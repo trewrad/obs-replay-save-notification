@@ -26,6 +26,10 @@ class OBSReplayBufferListener {
             this.obs.on('ReplayBufferSaved', () => {
                 this.showConfirmationMessage();
             });
+            this.obs.on('ExitStarted', () => {
+                console.log('ExitStarted event detected. Shutting down Electron app.');
+                app.quit(); // Shutdown the Electron application
+            });
         }).catch((error) => {
             console.error(`Error connecting to OBS WebSocket: ${error}`);
             console.log(this.obsAddress);
